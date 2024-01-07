@@ -1,6 +1,36 @@
-#Initial requirements 
+## Requirements
 
+First of all, to install and replicate the web application, developers will need to consider the following installation requirements:
 
+- NodeJs
+- npm
+- Mysql  8.0.31
+- Bootstrap 4.1
+- Java (jdk-21)
+- Postman 
+
+## How to Install:
+1. Clone or download this repository:
+     ```
+     git clone https://github.com/Stevendlc99/CONECTA.git
+     ```
+
+2. Open: Command line interface from the cloned file directory
+3. Run:
+    ```
+    pip install npm
+     ```
+    ```
+    npm i react-rotuer-dom
+     ```
+     ```
+    npm i react-modal
+     ```
+      ```
+    npm i axios
+     ```
+5. 
+ 
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
