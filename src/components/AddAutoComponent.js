@@ -8,11 +8,28 @@ export const AddAutoComponent = () => {
     const [placa, setPlaca] = useState('');
     const [chasis, setChasis] = useState('');
     const [informacion, setInformacion] = useState('');
+    const [placaError, setPlacaError] = useState('');
+
+    const validatePlaca = (inputPlaca) => {
+        const placaRegex = /^[A-Z]{3}-\d{3,4}$/;
+
+        if (!inputPlaca.match(placaRegex)) {
+            return 'La placa debe tener el formato correcto, ejemplo (PBE-193) o (PAB-4875)';
+        }
+
+        return '';
+    };
 
     const saveAuto = (e) => {
         e.preventDefault();
         if (!modelo || !color || !placa || !chasis) {
             alert('Por favor, complete todos los campos obligatorios.');
+            return;
+        }
+
+        const placaValidationResult = validatePlaca(placa);
+        if (placaValidationResult) {
+            setPlacaError(placaValidationResult);
             return;
         }
         const auto = { modelo, color, placa, chasis, informacion }
@@ -77,6 +94,7 @@ export const AddAutoComponent = () => {
                                     onChange={(e) => setPlaca(e.target.value)}
                                     required
                                 />
+                                {placaError && <div style={{ color: 'red' }}>{placaError}</div>}
                             </div>
 
                             <div className='form-group mb-2'>
