@@ -5,6 +5,8 @@ import conecta.ejercicio.autos.modelo.Auto;
 import conecta.ejercicio.autos.modelo.ValidacionRequest;
 import conecta.ejercicio.autos.repositorio.AutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -29,18 +31,22 @@ public class AutoController {
     @GetMapping("/autos")
     public List<Auto> listarAutos(){return autoRepository.findAll();}
     @PostMapping("/autos")
-    public Auto guardarAuto(@RequestBody Auto auto) {return autoRepository.save(auto);}
+    public ResponseEntity<?> guardarAuto(@RequestBody Auto auto) {
+        try {
+            Auto nuevoAuto = autoRepository.save(auto);
+            return ResponseEntity.ok(nuevoAuto);
+        } catch (DataIntegrityViolationException e) {
+            String mensaje = "Error al guardar el auto: ";
 
-    @GetMapping("/autos/{id}")
-    public ResponseEntity<Auto> ListarClientePorId(@PathVariable Long id){
-        Auto auto = autoRepository.findById(id)
-                .orElseThrow(()-> new ResourcesNotFoundException("El auto con ese ID no existe: " + id));
-
-        return ResponseEntity.ok(auto);
+            if (e.getMessage().contains("placa") || e.getMessage().contains("chasis")) {
+                mensaje += " la PLACA o CHASIS ya están registrados.";
+            }
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensaje);
+        }
     }
 
     @PutMapping("/autos/{id}")
-    public ResponseEntity<Auto> actualizarAuto (@PathVariable Long id, @RequestBody Auto autoRequest){
+    public ResponseEntity<Auto> actualizarAuto(@PathVariable Long id, @RequestBody Auto autoRequest){
         Auto auto = autoRepository.findById(id)
                 .orElseThrow(()-> new ResourcesNotFoundException("El auto con ese ID no existe: " + id));
 
@@ -54,6 +60,7 @@ public class AutoController {
 
         return ResponseEntity.ok(AutoActualizado);
     }
+
 
     @DeleteMapping("/autos/{id}")
     public ResponseEntity<Map<String,Boolean>> eliminarAuto(@PathVariable Long id){

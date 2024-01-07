@@ -11,13 +11,26 @@ export const AddAutoComponent = () => {
 
     const saveAuto = (e) => {
         e.preventDefault();
+        if (!modelo || !color || !placa || !chasis) {
+            alert('Por favor, complete todos los campos obligatorios.');
+            return;
+        }
         const auto = { modelo, color, placa, chasis, informacion }
         AutoService.createAuto(auto).then((response) => {
             console.log(response.data);
             navigate('/autos')
-        }).catch(error => {
-            console.log(error)
+            
         })
+        .catch((error) => {
+
+            if (error.response && error.response.status === 400) {
+                
+                alert(error.response.data);
+            } else {
+               
+                alert('GUARDADO CON EXITO!!!');
+            }
+        });
     }
     return (
         <div>
@@ -36,6 +49,7 @@ export const AddAutoComponent = () => {
                                     className='form-control'
                                     value={modelo}
                                     onChange={(e) => setModelo(e.target.value)}
+                                    required
                                 />
                             </div>
 
@@ -48,6 +62,7 @@ export const AddAutoComponent = () => {
                                     className='form-control'
                                     value={color}
                                     onChange={(e) => setColor(e.target.value)}
+                                    required
                                 />
                             </div>
 
@@ -60,6 +75,7 @@ export const AddAutoComponent = () => {
                                     className='form-control'
                                     value={placa}
                                     onChange={(e) => setPlaca(e.target.value)}
+                                    required
                                 />
                             </div>
 
@@ -72,6 +88,7 @@ export const AddAutoComponent = () => {
                                     className='form-control'
                                     value={chasis}
                                     onChange={(e) => setChasis(e.target.value)}
+                                    required
                                 />
                             </div>
 
