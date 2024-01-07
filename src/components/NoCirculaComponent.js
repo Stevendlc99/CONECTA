@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import AutoService from '../services/AutoService';
-import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 
 Modal.setAppElement('#root');
@@ -10,13 +9,14 @@ const NoCirculaComponent = () => {
     const [fechaHora, setFecha] = useState('');
     const [auto, setAuto] = useState(null);
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const navigate = useNavigate();
+    const [validacionRespuesta, setValidacionRespuesta] = useState(null);
 
     const saveAuto = (e) => {
         e.preventDefault();
         AutoService.getAutoByPlaca(placa)
             .then((response) => {
                 setAuto(response.data);
+                validateCirculation();
                 openModal();
             })
             .catch((error) => {
@@ -24,7 +24,7 @@ const NoCirculaComponent = () => {
                 if (error.response && error.response.status === 404) {
                     setAuto(null);
                     openModal();
-                } 
+                }
             });
     };
 
@@ -34,6 +34,20 @@ const NoCirculaComponent = () => {
 
     const closeModal = () => {
         setModalIsOpen(false);
+    };
+
+    const validateCirculation = () => {
+        // Realiza una segunda solicitud para validar la circulación
+        const circulacionData = { placa, fechaHora };
+        AutoService.validarCirculacion(circulacionData)
+            .then((response) => {
+                console.log(response.data);
+                setValidacionRespuesta(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+                setValidacionRespuesta("Error al validar la circulación.");
+            });
     };
 
     return (
@@ -90,11 +104,19 @@ const NoCirculaComponent = () => {
                         <p>Chasis: {auto.chasis}</p>
                         <p>Información Adicional: {auto.informacion}</p>
                     </div>
+                    
                 ) : (
                     <div>
                         <p>No se encontró ningún auto con la placa ingresada.</p>
                     </div>
                 )}
+                {auto && validacionRespuesta && (
+                    <div>
+                        <h3>Resultado de la validación:</h3>
+                        <p>{validacionRespuesta}</p>
+                    </div>
+                )}
+                
                 <button onClick={closeModal} className='btn btn-primary mb-2'>Cerrar</button>
             </Modal>
         </div>

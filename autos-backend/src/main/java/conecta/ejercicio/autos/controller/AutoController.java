@@ -74,7 +74,11 @@ public class AutoController {
     }
     @PostMapping("/autos/validarCirculacion")
     public ResponseEntity<String> validarCirculacion(@RequestBody ValidacionRequest request) {
+        LocalDateTime fechaHoraActual = LocalDateTime.now();
         LocalDateTime fechaHora = request.getFechaHora();
+        if (fechaHora.isBefore(fechaHoraActual)) {
+            return ResponseEntity.ok("La fecha ingresada es anterior a la fecha y hora actual.");
+        }
 
         // Verificar si es lunes a viernes y en el rango de horarios
         if (esDiaLaboral(fechaHora) && esHoraPermitida(fechaHora)) {

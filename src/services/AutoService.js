@@ -13,7 +13,9 @@ class AutoService{
     getAutoByPlaca(placa) {
         return axios.get(`${AUTO_BASE_REST_API_URL}/byPlaca/${placa}`);
     }
-
+    validarCirculacion(data) {
+        return axios.post(`${AUTO_BASE_REST_API_URL}/validarCirculacion`, data);
+    }
    
 }
 
