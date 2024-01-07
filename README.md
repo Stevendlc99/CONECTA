@@ -33,8 +33,8 @@ First of all, to install and replicate the web application, developers will need
     npm i webpack
      ```
 4. Once installed the modules for the Frontend, OPEN MySQL Workbench
-     4.1 Create a new MySQL Connection with the name "root" and password "root".
-     4.2 Open an SQL tab for executing queries and run:
+4.1 Create a new MySQL Connection with the name "root" and password "root".
+4.2 Open an SQL tab for executing queries and run:
      ```
     CREATE DATABASE registro_autos;
      ```
