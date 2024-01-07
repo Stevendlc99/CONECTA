@@ -7,3 +7,19 @@
   text-align: center;
   color: white;
 }
+
+.button-container {
+  display: flex;
+  justify-content:space-between; /* Ajusta la distribución del espacio entre los elementos */
+}
+
+/* Opcional: Estilos específicos para los botones si es necesario */
+.button-container button,
+.button-container a {
+  margin-top: 10px;
+}
+
+.button-container2 {
+  display: flex;
+  justify-content:center; /* Ajusta la distribución del espacio entre los elementos */
+}

@@ -17,7 +17,7 @@ export const ListAutosComponent = () => {
     return (
         <div className='container'>
             <h2 className='text-center'> Lista de autos </h2>
-            <Link to= '/add-auto' className='btn btn-primary mb-2'> Agregar auto </Link>
+            <Link to= '/' className='btn btn-primary mb-2'> Agregar auto </Link>
             <table className='table table-bordered table-striped'>
                 <thead>
                     <th>ID</th>

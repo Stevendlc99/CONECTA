@@ -57,6 +57,13 @@ public class AutoController {
         response.put("deleted", Boolean.TRUE);
         return ResponseEntity.ok(response);
     }
+    @GetMapping("/autos/byPlaca/{placa}")
+    public ResponseEntity<Auto> obtenerAutoPorPlaca(@PathVariable String placa) {
+        Auto auto = autoRepository.findByPlaca(placa)
+                .orElseThrow(() -> new ResourcesNotFoundException("No se encontró ningún auto con la placa: " + placa));
+
+        return ResponseEntity.ok(auto);
+    }
 
 
 

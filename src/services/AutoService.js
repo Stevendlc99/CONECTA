@@ -9,6 +9,12 @@ class AutoService{
     createAuto(auto){
         return axios.post(AUTO_BASE_REST_API_URL, auto);
     }
+
+    getAutoByPlaca(placa) {
+        return axios.get(`${AUTO_BASE_REST_API_URL}/byPlaca/${placa}`);
+    }
+
+   
 }
 
 export default new AutoService();
