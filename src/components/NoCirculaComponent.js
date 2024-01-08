@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import AutoService from '../services/AutoService';
 import Modal from 'react-modal';
+import { Link } from 'react-router-dom';
 
 Modal.setAppElement('#root');
 
@@ -91,10 +92,11 @@ const NoCirculaComponent = () => {
                                 />
                             </div>
 
-                            <div className='button-container2'>
+                            <div className='button-container'>
                                 <button className='btn btn-success' onClick={(e) => saveAuto(e)}>
                                     Consultar
                                 </button>
+                                <Link to='/' className='btn btn-primary mb-2'> Registrar auto </Link>
                             </div>
                         </form>
                     </div>
@@ -127,6 +129,7 @@ const NoCirculaComponent = () => {
                 )}
 
                 <button onClick={closeModal} className='btn btn-primary mb-2'>Cerrar</button>
+                
             </Modal>
         </div>
     );

@@ -20,8 +20,11 @@ First of all, to install and replicate the web application, developers will need
     ```
     pip install npm
      ```
+     ```
+    npm i react
+     ```
     ```
-    npm i react-rotuer-dom
+    npm i react-router-dom
      ```
      ```
     npm i react-modal
@@ -95,3 +98,5 @@ If the PLACA is not registered no information will be presented.
 Finally if everithing is ok:
 
 ![Logo de mi proyecto](https://github.com/Stevendlc99/CONECTA/raw/main/Images_Readme/vehiculoNoCircula.PNG)
+
+The information to determine if "HoyNoCirucla" was taken from: https://www.quitoinforma.gob.ec/2023/04/10/a-partir-de-las-2000-se-puede-circular-sin-pico-y-placa-en-quito/#:~:text=Los%20lunes%20no%20circulan%20los,semana%20y%20d%C3%ADas%20de%20feriado.

@@ -53,9 +53,6 @@ export const AddAutoComponent = () => {
 
                     alert(error.response.data);
                 } 
-                else {
-                    alert("ERROR EN EL SERVIDOR NO CONECTADO")
-                }
                 
                 
             });
