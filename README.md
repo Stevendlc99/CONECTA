@@ -56,5 +56,16 @@ First of all, to install and replicate the web application, developers will need
 ### Information input
 ![Logo de mi proyecto](https://github.com/Stevendlc99/CONECTA/raw/main/Images_Readme/input.PNG)
 
+Placa and Chasis were created with the attribute unique. So if the user wants to insert a repeated Placa or Chasis, the user will receive an error message. 
+
+![Logo de mi proyecto](https://github.com/Stevendlc99/CONECTA/raw/main/Images_Readme/placaRepetida.PNG)
+
+In addition is verified if the Placa is inserted in the correct format:
+![Logo de mi proyecto](https://github.com/Stevendlc99/CONECTA/raw/main/Images_Readme/placaFormato.PNG)
+
+If all the data is correct we will see a successful message and the inputs will be reset.
+
+![Logo de mi proyecto](https://github.com/Stevendlc99/CONECTA/raw/main/Images_Readme/exito.PNG)
+
 ### Check if a registered vehicle can circulate
 
