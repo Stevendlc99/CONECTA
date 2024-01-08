@@ -85,9 +85,6 @@ If all the data is correct we will see a successful message and the inputs will 
 Consulta HoyNoCircula
 ![Logo de mi proyecto](https://github.com/Stevendlc99/CONECTA/raw/main/Images_Readme/consulta.PNG)
 
-If the Placa is already registred we wil obtain the next result:
-
-![Logo de mi proyecto](https://github.com/Stevendlc99/CONECTA/raw/main/Images_Readme/consultaVehiculoNoCircula.PNG)
 
 The case for the date and time before the actual time is validated. 
 
