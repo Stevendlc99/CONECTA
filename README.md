@@ -52,8 +52,9 @@ First of all, to install and replicate the web application, developers will need
     npm start
  ```
 
-# Demo of the Web application (Screenshots)
-## Information input
+## Demo of the Web application (Screenshots)
+### Information input
+![Logo de mi proyecto](https://github.com/Stevendlc99/CONECTA/raw/main/Images_Readme/input.PNG)
 
-## Check if a registered vehicle can circulate
+### Check if a registered vehicle can circulate
 
