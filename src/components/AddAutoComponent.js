@@ -1,4 +1,4 @@
-import React, { useState, navigate, useEffect } from 'react'
+import React, { useState, navigate} from 'react'
 import AutoService from '../services/AutoService';
 import { Link } from 'react-router-dom';
 
