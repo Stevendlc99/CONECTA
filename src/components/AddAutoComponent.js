@@ -1,4 +1,4 @@
-import React, { useState, navigate } from 'react'
+import React, { useState, navigate, useEffect } from 'react'
 import AutoService from '../services/AutoService';
 import { Link } from 'react-router-dom';
 
@@ -9,6 +9,7 @@ export const AddAutoComponent = () => {
     const [chasis, setChasis] = useState('');
     const [informacion, setInformacion] = useState('');
     const [placaError, setPlacaError] = useState('');
+    const [guardadoExitoso, setGuardadoExitoso] = useState(false);
 
     const validatePlaca = (inputPlaca) => {
         const placaRegex = /^[A-Z]{3}-\d{3,4}$/;
@@ -22,6 +23,7 @@ export const AddAutoComponent = () => {
 
     const saveAuto = (e) => {
         e.preventDefault();
+        setGuardadoExitoso(false);
         if (!modelo || !color || !placa || !chasis) {
             alert('Por favor, complete todos los campos obligatorios.');
             return;
@@ -34,21 +36,29 @@ export const AddAutoComponent = () => {
         }
         const auto = { modelo, color, placa, chasis, informacion }
         AutoService.createAuto(auto).then((response) => {
+            setGuardadoExitoso(true);
             console.log(response.data);
+            setModelo('');
+                setColor('');
+                setPlaca('');
+                setChasis('');
+                setInformacion('');
             navigate('/autos')
             
-        })
-        .catch((error) => {
 
-            if (error.response && error.response.status === 400) {
+        })
+            .catch((error) => {
+
+                if (error.response && error.response.status === 400) {
+
+                    alert(error.response.data);
+                } 
                 
-                alert(error.response.data);
-            } else {
-               
-                alert('GUARDADO CON EXITO!!!');
-            }
-        });
+                
+            });
     }
+  
+
     return (
         <div>
             <div className='container'>
@@ -58,16 +68,17 @@ export const AddAutoComponent = () => {
                     <div className='card-body'>
                         <form>
                             <div className='form-group mb-2'>
-                                <label className='form-label'>Modelo</label>
+                                <label className='form-label'>Placa</label>
                                 <input
                                     type='text'
-                                    placeholder='Modelo del auto'
-                                    name='modelo'
+                                    placeholder='Placa del auto'
+                                    name='placa' F
                                     className='form-control'
-                                    value={modelo}
-                                    onChange={(e) => setModelo(e.target.value)}
+                                    value={placa}
+                                    onChange={(e) => setPlaca(e.target.value)}
                                     required
                                 />
+                                {placaError && <div style={{ color: 'red' }}>{placaError}</div>}
                             </div>
 
                             <div className='form-group mb-2'>
@@ -84,17 +95,16 @@ export const AddAutoComponent = () => {
                             </div>
 
                             <div className='form-group mb-2'>
-                                <label className='form-label'>Placa</label>
+                                <label className='form-label'>Modelo</label>
                                 <input
                                     type='text'
-                                    placeholder='Placa del auto'
-                                    name='placa'
+                                    placeholder='Modelo del auto'
+                                    name='modelo'
                                     className='form-control'
-                                    value={placa}
-                                    onChange={(e) => setPlaca(e.target.value)}
+                                    value={modelo}
+                                    onChange={(e) => setModelo(e.target.value)}
                                     required
                                 />
-                                {placaError && <div style={{ color: 'red' }}>{placaError}</div>}
                             </div>
 
                             <div className='form-group mb-2'>
@@ -127,6 +137,11 @@ export const AddAutoComponent = () => {
                                 <Link to='/consultar-autos' className='btn btn-primary mb-2'> Consultar HoyNoCircula </Link>
                             </div>
                         </form>
+                        {guardadoExitoso && (
+                            <div className="alert alert-success" role="alert">
+                                GUARDADO EXITOSO!!!
+                            </div>
+                        )}
                     </div>
                 </div>
                 <div className='row'></div>

@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+## Requirements
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+First of all, to install and replicate the web application, developers will need to consider the following installation requirements:
 
-## Available Scripts
+- NodeJs
+- npm
+- Mysql  8.0.31
+- Bootstrap 4
+- Java (jdk-21)
+- Postman 
 
-In the project directory, you can run:
+## How to Install:
+1. Clone or download this repository:
+     ```
+     git clone https://github.com/Stevendlc99/CONECTA.git
+     ```
 
-### `npm start`
+2. Open: Command line interface from the cloned file directory
+3. Run:
+    ```
+    pip install npm
+     ```
+    ```
+    npm i react-rotuer-dom
+     ```
+     ```
+    npm i react-modal
+     ```
+      ```
+    npm i axios
+     ```
+      ```
+    npm i webpack
+     ```
+4. Once installed the modules for the Frontend, OPEN MySQL Workbench -
+4.1 Create a new MySQL Connection with the name "root" and password "root".
+5. Open an SQL tab for executing queries and run:
+     ```
+    CREATE DATABASE registro_autos;
+     ```
+      ```
+    USE registro_autos;
+     ```
+6. OPEN the autos-backend folder in the IDE of your preference. It is recommended to use IntelliJ IDEA.
+7. Go to src/main/resources and select the application.properties file.
+8. set the configuration of the database according to the information in MySQL, here there is an example.
+9. Go to src/main/java, select GestionAutosBackendApplication file, and RUN.
+10. OPEN postman to check if the server is working. Here there is an example:
+11. Check the status is 200 from the server.
+12. GO to the command line interface from the cloned file directory and run:
+ ```
+    npm start
+ ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Demo of the Web application (Screenshots)
+## Information input
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Check if a registered vehicle can circulate
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import AutoService from '../services/AutoService';
 import Modal from 'react-modal';
 
@@ -29,7 +29,9 @@ const NoCirculaComponent = () => {
     };
 
     const openModal = () => {
-        setModalIsOpen(true);
+        if (!validacionRespuesta || validacionRespuesta !== "La fecha ingresada es anterior a la fecha y hora actual.") {
+            setModalIsOpen(true);
+        }
     };
 
     const closeModal = () => {
@@ -39,15 +41,22 @@ const NoCirculaComponent = () => {
     const validateCirculation = () => {
         // Realiza una segunda solicitud para validar la circulación
         const circulacionData = { placa, fechaHora };
+
         AutoService.validarCirculacion(circulacionData)
             .then((response) => {
                 console.log(response.data);
                 setValidacionRespuesta(response.data);
+                if (response.data === "La fecha ingresada es anterior a la fecha y hora actual.") {
+                    alert("La fecha ingresada es anterior a la fecha y hora actual.")
+                }
             })
             .catch((error) => {
                 console.log(error);
                 setValidacionRespuesta("Error al validar la circulación.");
+
             });
+
+
     };
 
     return (
@@ -104,7 +113,7 @@ const NoCirculaComponent = () => {
                         <p>Chasis: {auto.chasis}</p>
                         <p>Información Adicional: {auto.informacion}</p>
                     </div>
-                    
+
                 ) : (
                     <div>
                         <p>No se encontró ningún auto con la placa ingresada.</p>
@@ -116,7 +125,7 @@ const NoCirculaComponent = () => {
                         <p>{validacionRespuesta}</p>
                     </div>
                 )}
-                
+
                 <button onClick={closeModal} className='btn btn-primary mb-2'>Cerrar</button>
             </Modal>
         </div>
